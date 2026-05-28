@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+@import './font.css';
+
+@layer base {
+  body {
+    font-family: 'JetBrains Mono', 'D2Coding ligature', monospace;
+  }
+}

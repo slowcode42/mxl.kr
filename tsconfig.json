@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Effect-TS/language-service/refs/heads/main/schema.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "target": "esnext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "moduleResolution": "Bundler",
+    "types": ["vite/client", "bun-types"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "plugins": [
+    {
+      "name": "@effect/language-service"
+    }
+  ]
+}
