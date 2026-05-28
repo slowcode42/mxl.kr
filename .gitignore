@@ -1,3 +1,5 @@
+.env
 .output
+drizzle
 bun.lock
 node_modules

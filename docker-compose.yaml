@@ -1,0 +1,44 @@
+name: mxl
+
+services:
+  mxl-postgres:
+    image: postgres:latest
+    container_name: mxl-postgres
+    ports:
+      - 127.0.0.1:${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+    restart: unless-stopped
+
+  mxl-rustfs:
+    image: rustfs/rustfs:latest
+    container_name: mxl-rustfs
+    ports:
+      - 127.0.0.1:${RUSTFS_PORT1}:9000
+      - 127.0.0.1:${RUSTFS_PORT2}:9001
+    environment:
+      RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY}
+      RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY}
+    volumes:
+      - rustfs:/data
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl -f http://localhost:9000/health && curl -f http://localhost:9001/health'
+        ]
+      interval: 5s
+      timeout: 5s
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  rustfs:
