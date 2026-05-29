@@ -39,6 +39,12 @@ services:
       timeout: 5s
     restart: unless-stopped
 
+  mxl-valkey:
+    image: valkey/valkey:latest
+    container_name: mxl-valkey
+    ports:
+      - 127.0.0.1:${VALKEY_PORT}:6379
+
 volumes:
   pgdata:
   rustfs:

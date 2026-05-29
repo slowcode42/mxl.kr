@@ -6,7 +6,10 @@ check:
     @bunx tsc
 up:
     @bun update --latest && bun add effect@beta drizzle-orm@beta drizzle-kit@beta
-
+    @docker pull postgres:latest
+    @docker pull rustfs/rustfs:latest
+    @docker pull valkey/valkey:latest
+    @docker compose down && docker compose up -d --wait
 dev:
     @bun --bun vite dev
 build:
