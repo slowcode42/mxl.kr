@@ -2,23 +2,23 @@ import { Input } from '@base-ui/react/input'
 import { useRef } from 'react'
 
 import { Box, Button, HStack, VStack, SpinnerText } from '~/component'
-import { useUser, useLogin, useLogout } from '~/hook'
+import { useSession, useLogin, useLogout } from '~/hook'
 
 export function component() {
-  const user = useUser()
+  const session = useSession()
   const userRef = useRef<HTMLInputElement>(null!)
   const passRef = useRef<HTMLInputElement>(null!)
   const { logout } = useLogout()
   const { login, isLoginPending } = useLogin()
   return (
     <VStack>
-      {user && (
+      {session && (
         <VStack>
-          <Box>로그인 사용자:{user}</Box>
+          <Box>로그인 사용자:{session.user}</Box>
           <Button onClick={() => logout()}>로그아웃</Button>
         </VStack>
       )}
-      {!user && (
+      {!session && (
         <>
           <HStack>
             <Box>ID:</Box>

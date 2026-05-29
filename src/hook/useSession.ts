@@ -1,5 +1,5 @@
 import { useLoaderData } from '@tanstack/react-router'
 
-export function useUser() {
+export function useSession() {
   return useLoaderData({ from: '/_layout' })
 }

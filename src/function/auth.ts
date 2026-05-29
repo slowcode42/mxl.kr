@@ -5,7 +5,7 @@ import { consola } from 'consola'
 import { Effect } from 'effect'
 import ky from 'ky'
 
-import { loginSchema } from '~/library'
+import { loginSchema, sessionSchema } from '~/library'
 
 export const loginFn = createServerFn({ method: 'POST' })
   .inputValidator(loginSchema.parse)
@@ -37,8 +37,9 @@ export const loginFn = createServerFn({ method: 'POST' })
         if (!cookie2) throw '로그인 에러 5'
         const session2 = cookie2.match(/PHPSESSID=[^;]+/)
         if (session2?.length !== 1) throw '로그인 에러 6'
-        setCookie('user', user)
-        await redis.set(user, session2[0], 'EX', 86400)
+        const uuid = Bun.randomUUIDv7()
+        setCookie('uuid', uuid)
+        await redis.set(uuid, JSON.stringify({ user, sessid: session2[0] }), 'EX', 86400)
       },
       catch: (err) => {
         consola.error(err)
@@ -48,16 +49,16 @@ export const loginFn = createServerFn({ method: 'POST' })
   )
 
 export const logoutFn = createServerFn({ method: 'POST' }).handler(async () => {
-  const user = getCookie('user')
-  if (user) await redis.del(user)
-  deleteCookie('user')
+  const uuid = getCookie('uuid')
+  if (uuid) await redis.del(uuid)
+  deleteCookie('uuid')
 })
 
 export const getUserFn = createServerFn({ method: 'GET' }).handler(async () => {
-  const user = getCookie('user')
-  if (!user) return ''
-  const session = await redis.get(user)
-  return session ? user : ''
+  const uuid = getCookie('uuid')
+  if (!uuid) return ''
+  const session = await redis.get(uuid)
+  return session ? sessionSchema.parse(JSON.parse(session)) : ''
 })
 
 const request = createServerOnlyFn(
