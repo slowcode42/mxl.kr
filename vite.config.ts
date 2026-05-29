@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   server: {
-    port: 1111,
+    port: Number(import.meta.env.VITE_PORT),
     allowedHosts: ['mxl.kr']
   },
   plugins: [

@@ -1,5 +1,15 @@
 import { defineRelations } from 'drizzle-orm'
 
-import { testTable } from './schema'
+import {
+  versionTable,
+  sourceTable,
+  entryTable,
+  transTable,
+  transCommentTable,
+  historyTable
+} from './schema'
 
-export const relations = defineRelations({ testTable }, () => ({}))
+export const relations = defineRelations(
+  { versionTable, sourceTable, entryTable, transTable, transCommentTable, historyTable },
+  () => ({})
+)

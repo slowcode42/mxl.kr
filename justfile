@@ -1,23 +1,25 @@
 set dotenv-load
-
-check:
-    @bunx oxfmt
-    @bunx oxlint
-    @bunx tsc
-docker-up:
-    @docker pull postgres:latest
-    @docker pull rustfs/rustfs:latest
-    @docker pull valkey/valkey:latest
-up:docker-up
-    @bun update --latest && bun add effect@beta drizzle-orm@beta drizzle-kit@beta
-    @docker compose down && docker compose up -d --wait
 dev:
     @bun --bun vite dev
 build:
     @bun --bun vite build
+studio:
+    @bun drizzle-kit studio
 serve:build
-    @PORT=1111 bun .output/server/index.mjs
-docker:
+    @PORT=$VITE_PORT bun .output/server/index.mjs
+check:
+    @bunx oxfmt
+    @bunx oxlint
+    @bunx tsc
+up:
+    @bun update --latest && bun add effect@beta drizzle-orm@beta drizzle-kit@beta
+docker-up:
+    @docker pull postgres:latest
+    @docker pull rustfs/rustfs:latest
+    @docker pull valkey/valkey:latest
+full-up:docker-up up
+    @docker compose down && docker compose up -d --wait
+docker-init:
     @docker compose up -d --wait
     @docker run --rm --network mxl_default --entrypoint sh minio/mc:latest -c "\
         mc alias set local http://mxl-rustfs:9000 $RUSTFS_ACCESS_KEY $RUSTFS_SECRET_KEY && \
@@ -28,9 +30,7 @@ docker:
         mc ls local"
 reset:
     @docker compose down -v
-    @just docker
+    @just docker-init
     @rm -rf drizzle
     @bun drizzle-kit generate
     @bun drizzle-kit push --force
-studio:
-    @bun drizzle-kit studio
