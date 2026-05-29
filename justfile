@@ -1,10 +1,10 @@
 set dotenv-load
 dev:
-    @bun --bun vite dev
+    @bunx --bun vite dev
 build:
-    @bun --bun vite build
+    @bunx --bun vite build
 studio:
-    @bun drizzle-kit studio
+    @bunx drizzle-kit studio
 serve:build
     @PORT=$VITE_PORT bun .output/server/index.mjs
 check:
@@ -32,5 +32,5 @@ reset:
     @docker compose down -v
     @just docker-init
     @rm -rf drizzle
-    @bun drizzle-kit generate
-    @bun drizzle-kit push --force
+    @bunx drizzle-kit generate
+    @bunx drizzle-kit push --force

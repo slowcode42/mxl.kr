@@ -31,7 +31,7 @@ export const sourceTable = pgTable(
   'source',
   {
     sourceId: serial().primaryKey(),
-    content: text().notNull(),
+    value: text().notNull(),
     hash: char({ length: 64 }).notNull()
   },
   ({ hash }) => [uniqueIndex('source_hash').on(hash)]
@@ -47,9 +47,7 @@ export const entryTable = pgTable(
     context: contextEnum().notNull(),
     idx: integer().notNull(),
     key: text().notNull(),
-    sourceId: integer()
-      .notNull()
-      .references(() => sourceTable.sourceId)
+    sourceId: integer().references(() => sourceTable.sourceId)
   },
   ({ key, sourceId, idx, version, context }) => [
     index('entry_key').on(key),
@@ -65,7 +63,7 @@ export const transTable = pgTable(
     sourceId: integer()
       .notNull()
       .references(() => sourceTable.sourceId),
-    content: text().notNull(),
+    value: text().notNull(),
     status: statusEnum().notNull().default('suggested'),
     author: text().notNull(),
     deleted: boolean().notNull().default(false),
@@ -103,8 +101,8 @@ export const historyTable = pgTable(
     transId: integer()
       .notNull()
       .references(() => transTable.transId),
-    oldContent: text().notNull(),
-    newContent: text().notNull(),
+    oldValue: text().notNull(),
+    newValue: text().notNull(),
     oldStatus: statusEnum().notNull(),
     newStatus: statusEnum().notNull(),
     author: text().notNull(),
