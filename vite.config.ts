@@ -16,7 +16,14 @@ export default defineConfig({
         routesDirectory: 'route'
       }
     }),
-    nitro({ preset: 'bun' }),
+    nitro({
+      preset: 'bun',
+      compressPublicAssets: {
+        gzip: true,
+        zstd: true,
+        brotli: true
+      }
+    }),
     viteReact()
   ],
   resolve: {
