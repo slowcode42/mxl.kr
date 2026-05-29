@@ -1,5 +1,9 @@
+import { useVersions } from '../-hook'
+
 export function component() {
-  return <div>trans</div>
+  const versions = useVersions()
+  console.log(versions)
+  return <div>{versions.length}</div>
 }
 
 // 원본 | 번역 | 상태

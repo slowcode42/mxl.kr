@@ -24,7 +24,8 @@ export const contextEnum = pgEnum('context', [
 export const statusEnum = pgEnum('status', ['approved', 'rejected', 'replaced', 'suggested'])
 
 export const versionTable = pgTable('version', {
-  version: text().primaryKey()
+  version: text().primaryKey(),
+  created: timestamp({ withTimezone: true }).notNull().defaultNow()
 })
 
 export const sourceTable = pgTable(
