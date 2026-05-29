@@ -2,6 +2,10 @@
 @import './font.css';
 
 @layer base {
+  html {
+    scrollbar-width: none;
+  }
+
   body {
     font-family: 'JetBrains Mono', 'D2Coding ligature', monospace;
   }

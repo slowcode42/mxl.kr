@@ -3,7 +3,7 @@ import { createRootRouteWithContext } from '@tanstack/react-router'
 
 import { component, shellComponent } from './-component'
 
-import css from '../style/index.css?url'
+import css from '~/style/index.css?url'
 
 export const Route = createRootRouteWithContext<{
   qc: QueryClient

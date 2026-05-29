@@ -1,15 +1,15 @@
-import { Box, HStack } from '~/component/common'
+import { Box, ButtonL, HStack } from '~/component'
 
 export function Menu() {
   return (
-    <HStack className='justify-between'>
+    <HStack className='sticky top-0 z-10 h-10 justify-between border border-red-200 bg-white'>
       <Box className='border'>LOGO</Box>
       <HStack className='gap-1 *:cursor-pointer *:border'>
-        <Box>홈</Box>
-        <Box>문서</Box>
-        <Box>게시판</Box>
-        <Box>패치노트</Box>
-        <Box>번역기</Box>
+        <ButtonL to='/'>홈</ButtonL>
+        <ButtonL to='/docs'>문서</ButtonL>
+        <ButtonL to='/board'>게시판</ButtonL>
+        <ButtonL to='/note'>패치노트</ButtonL>
+        <ButtonL to='/trans'>번역기</ButtonL>
       </HStack>
     </HStack>
   )
