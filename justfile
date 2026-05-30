@@ -17,7 +17,7 @@ docker-up:
     @docker pull postgres:latest
     @docker pull rustfs/rustfs:latest
     @docker pull valkey/valkey:latest
-full-up:docker-up up
+full-up:up docker-up
     @docker compose down && docker compose up -d --wait
 docker-init:
     @docker compose up -d --wait

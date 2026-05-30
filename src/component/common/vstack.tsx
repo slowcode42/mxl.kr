@@ -3,9 +3,9 @@ import { motion } from 'motion/react'
 
 import { cn } from '~/library'
 
-export function VStack({ children, className, ...props }: React.ComponentProps<'div'>) {
+export function VStack({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div {...props} className={cn('flex flex-col', className)}>
+    <div className={cn('flex flex-col', className)} {...props}>
       {children}
     </div>
   )

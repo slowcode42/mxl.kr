@@ -1,9 +1,9 @@
 import { createLink } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
-export function Button({ children, className, ...props }: React.ComponentProps<'button'>) {
+export function Button({ className, children, ...props }: React.ComponentProps<'button'>) {
   return (
-    <button {...props} className={className}>
+    <button className={className} {...props}>
       {children}
     </button>
   )

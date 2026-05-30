@@ -3,9 +3,9 @@ import { motion } from 'motion/react'
 
 import { cn } from '~/library'
 
-export function Flex({ children, className, ...props }: React.ComponentProps<'div'>) {
+export function Flex({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div {...props} className={cn('flex', className)}>
+    <div className={cn('flex', className)} {...props}>
       {children}
     </div>
   )

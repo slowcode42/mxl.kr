@@ -1,9 +1,9 @@
 import { createLink } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
-export function Text({ children, className, ...props }: React.ComponentProps<'span'>) {
+export function Text({ className, children, ...props }: React.ComponentProps<'span'>) {
   return (
-    <span {...props} className={className}>
+    <span className={className} {...props}>
       {children}
     </span>
   )

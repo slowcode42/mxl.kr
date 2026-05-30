@@ -1,6 +1,8 @@
 import { HeadContent, Outlet, Scripts } from '@tanstack/react-router'
 import { Toaster } from 'sonner'
 
+import { Box } from '~/component'
+
 export function shellComponent({ children }: { children: React.ReactNode }) {
   return (
     <html>
@@ -17,9 +19,9 @@ export function shellComponent({ children }: { children: React.ReactNode }) {
 
 export function component() {
   return (
-    <>
+    <Box className='root'>
       <Outlet />
       <Toaster />
-    </>
+    </Box>
   )
 }

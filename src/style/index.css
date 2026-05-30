@@ -9,4 +9,8 @@
   body {
     font-family: 'JetBrains Mono', 'D2Coding ligature', monospace;
   }
+
+  .root {
+    isolation: isolate;
+  }
 }

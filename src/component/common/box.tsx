@@ -1,9 +1,9 @@
 import { createLink } from '@tanstack/react-router'
 import { motion } from 'motion/react'
 
-export function Box({ children, className, ...props }: React.ComponentProps<'div'>) {
+export function Box({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div {...props} className={className}>
+    <div className={className} {...props}>
       {children}
     </div>
   )

@@ -3,9 +3,9 @@ import { motion } from 'motion/react'
 
 import { cn } from '~/library'
 
-export function Grid({ children, className, ...props }: React.ComponentProps<'div'>) {
+export function Grid({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div {...props} className={cn('grid', className)}>
+    <div className={cn('grid', className)} {...props}>
       {children}
     </div>
   )

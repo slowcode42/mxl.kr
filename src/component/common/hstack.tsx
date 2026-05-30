@@ -3,9 +3,9 @@ import { motion } from 'motion/react'
 
 import { cn } from '~/library'
 
-export function HStack({ children, className, ...props }: React.ComponentProps<'div'>) {
+export function HStack({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div {...props} className={cn('flex flex-row', className)}>
+    <div className={cn('flex flex-row', className)} {...props}>
       {children}
     </div>
   )
