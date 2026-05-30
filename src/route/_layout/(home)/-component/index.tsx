@@ -1,45 +1,20 @@
-import { Input } from '@base-ui/react/input'
-import { useRef } from 'react'
-
-import { Box, Button, HStack, VStack, SpinnerText } from '~/component'
-import { useSession, useLogin, useLogout } from '~/hook'
+import { Box, HStack, VStack } from '~/component'
 
 export function component() {
-  const session = useSession()
-  const userRef = useRef<HTMLInputElement>(null!)
-  const passRef = useRef<HTMLInputElement>(null!)
-  const { logout } = useLogout()
-  const { login, isLoginPending } = useLogin()
   return (
     <VStack>
-      {session && (
-        <VStack>
-          <Box>로그인 사용자:{session.user}</Box>
-          <Button onClick={() => logout()}>로그아웃</Button>
-        </VStack>
-      )}
-      {!session && (
-        <>
-          <HStack>
-            <Box>ID:</Box>
-            <Input ref={userRef} className='border' />
-          </HStack>
-          <HStack>
-            <Box>PW:</Box>
-            <Input ref={passRef} className='border' />
-          </HStack>
-          <Button
-            onClick={() =>
-              login({
-                user: userRef.current.value,
-                pass: passRef.current.value
-              })
-            }
-          >
-            <SpinnerText isPending={isLoginPending}>로그인하기</SpinnerText>
-          </Button>
-        </>
-      )}
+      <HStack className='*:flex-1 *:border'>
+        <VStack>최근 게시물</VStack>
+        <VStack>소개 및 다운로드</VStack>
+      </HStack>
+      <VStack className='*:border'>
+        <Box>revamped skills</Box>
+        <Box>new items</Box>
+        <Box>endgame quests</Box>
+        <Box>new areas to discover</Box>
+        <Box>crafting system</Box>
+        <Box>quality of life</Box>
+      </VStack>
     </VStack>
   )
 }

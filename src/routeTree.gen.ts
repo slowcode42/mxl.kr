@@ -10,34 +10,38 @@
 
 import { Route as rootRouteImport } from './route/__root'
 import { Route as LayoutRouteRouteImport } from './route/_layout/route'
+import { Route as LayoutDocsRouteRouteImport } from './route/_layout/docs/route'
+import { Route as LayoutBoardRouteRouteImport } from './route/_layout/board/route'
 import { Route as LayoutTransIndexRouteImport } from './route/_layout/trans/index'
-import { Route as LayoutNoteIndexRouteImport } from './route/_layout/note/index'
-import { Route as LayoutDocsIndexRouteImport } from './route/_layout/docs/index'
-import { Route as LayoutBoardIndexRouteImport } from './route/_layout/board/index'
 import { Route as LayouthomeIndexRouteImport } from './route/_layout/(home)/index'
+import { Route as LayoutDocsQuestIndexRouteImport } from './route/_layout/docs/quest/index'
+import { Route as LayoutDocsPatchIndexRouteImport } from './route/_layout/docs/patch/index'
+import { Route as LayoutDocsItemIndexRouteImport } from './route/_layout/docs/item/index'
+import { Route as LayoutDocsCharacterIndexRouteImport } from './route/_layout/docs/character/index'
+import { Route as LayoutDocsgeneralIndexRouteImport } from './route/_layout/docs/(general)/index'
+import { Route as LayoutBoardShowIndexRouteImport } from './route/_layout/board/show/index'
+import { Route as LayoutBoardInfoIndexRouteImport } from './route/_layout/board/info/index'
+import { Route as LayoutBoardFreeIndexRouteImport } from './route/_layout/board/free/index'
+import { Route as LayoutBoardBuildIndexRouteImport } from './route/_layout/board/build/index'
+import { Route as LayoutBoardmainIndexRouteImport } from './route/_layout/board/(main)/index'
 
 const LayoutRouteRoute = LayoutRouteRouteImport.update({
   id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LayoutDocsRouteRoute = LayoutDocsRouteRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
+const LayoutBoardRouteRoute = LayoutBoardRouteRouteImport.update({
+  id: '/board',
+  path: '/board',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
 const LayoutTransIndexRoute = LayoutTransIndexRouteImport.update({
   id: '/trans/',
   path: '/trans/',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
-const LayoutNoteIndexRoute = LayoutNoteIndexRouteImport.update({
-  id: '/note/',
-  path: '/note/',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
-const LayoutDocsIndexRoute = LayoutDocsIndexRouteImport.update({
-  id: '/docs/',
-  path: '/docs/',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
-const LayoutBoardIndexRoute = LayoutBoardIndexRouteImport.update({
-  id: '/board/',
-  path: '/board/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 const LayouthomeIndexRoute = LayouthomeIndexRouteImport.update({
@@ -45,43 +49,154 @@ const LayouthomeIndexRoute = LayouthomeIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
+const LayoutDocsQuestIndexRoute = LayoutDocsQuestIndexRouteImport.update({
+  id: '/quest/',
+  path: '/quest/',
+  getParentRoute: () => LayoutDocsRouteRoute,
+} as any)
+const LayoutDocsPatchIndexRoute = LayoutDocsPatchIndexRouteImport.update({
+  id: '/patch/',
+  path: '/patch/',
+  getParentRoute: () => LayoutDocsRouteRoute,
+} as any)
+const LayoutDocsItemIndexRoute = LayoutDocsItemIndexRouteImport.update({
+  id: '/item/',
+  path: '/item/',
+  getParentRoute: () => LayoutDocsRouteRoute,
+} as any)
+const LayoutDocsCharacterIndexRoute =
+  LayoutDocsCharacterIndexRouteImport.update({
+    id: '/character/',
+    path: '/character/',
+    getParentRoute: () => LayoutDocsRouteRoute,
+  } as any)
+const LayoutDocsgeneralIndexRoute = LayoutDocsgeneralIndexRouteImport.update({
+  id: '/(general)/',
+  path: '/',
+  getParentRoute: () => LayoutDocsRouteRoute,
+} as any)
+const LayoutBoardShowIndexRoute = LayoutBoardShowIndexRouteImport.update({
+  id: '/show/',
+  path: '/show/',
+  getParentRoute: () => LayoutBoardRouteRoute,
+} as any)
+const LayoutBoardInfoIndexRoute = LayoutBoardInfoIndexRouteImport.update({
+  id: '/info/',
+  path: '/info/',
+  getParentRoute: () => LayoutBoardRouteRoute,
+} as any)
+const LayoutBoardFreeIndexRoute = LayoutBoardFreeIndexRouteImport.update({
+  id: '/free/',
+  path: '/free/',
+  getParentRoute: () => LayoutBoardRouteRoute,
+} as any)
+const LayoutBoardBuildIndexRoute = LayoutBoardBuildIndexRouteImport.update({
+  id: '/build/',
+  path: '/build/',
+  getParentRoute: () => LayoutBoardRouteRoute,
+} as any)
+const LayoutBoardmainIndexRoute = LayoutBoardmainIndexRouteImport.update({
+  id: '/(main)/',
+  path: '/',
+  getParentRoute: () => LayoutBoardRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LayouthomeIndexRoute
-  '/board/': typeof LayoutBoardIndexRoute
-  '/docs/': typeof LayoutDocsIndexRoute
-  '/note/': typeof LayoutNoteIndexRoute
+  '/board': typeof LayoutBoardRouteRouteWithChildren
+  '/docs': typeof LayoutDocsRouteRouteWithChildren
   '/trans/': typeof LayoutTransIndexRoute
+  '/board/': typeof LayoutBoardmainIndexRoute
+  '/board/build/': typeof LayoutBoardBuildIndexRoute
+  '/board/free/': typeof LayoutBoardFreeIndexRoute
+  '/board/info/': typeof LayoutBoardInfoIndexRoute
+  '/board/show/': typeof LayoutBoardShowIndexRoute
+  '/docs/': typeof LayoutDocsgeneralIndexRoute
+  '/docs/character/': typeof LayoutDocsCharacterIndexRoute
+  '/docs/item/': typeof LayoutDocsItemIndexRoute
+  '/docs/patch/': typeof LayoutDocsPatchIndexRoute
+  '/docs/quest/': typeof LayoutDocsQuestIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof LayouthomeIndexRoute
-  '/board': typeof LayoutBoardIndexRoute
-  '/docs': typeof LayoutDocsIndexRoute
-  '/note': typeof LayoutNoteIndexRoute
   '/trans': typeof LayoutTransIndexRoute
+  '/board': typeof LayoutBoardmainIndexRoute
+  '/board/build': typeof LayoutBoardBuildIndexRoute
+  '/board/free': typeof LayoutBoardFreeIndexRoute
+  '/board/info': typeof LayoutBoardInfoIndexRoute
+  '/board/show': typeof LayoutBoardShowIndexRoute
+  '/docs': typeof LayoutDocsgeneralIndexRoute
+  '/docs/character': typeof LayoutDocsCharacterIndexRoute
+  '/docs/item': typeof LayoutDocsItemIndexRoute
+  '/docs/patch': typeof LayoutDocsPatchIndexRoute
+  '/docs/quest': typeof LayoutDocsQuestIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_layout': typeof LayoutRouteRouteWithChildren
+  '/_layout/board': typeof LayoutBoardRouteRouteWithChildren
+  '/_layout/docs': typeof LayoutDocsRouteRouteWithChildren
   '/_layout/(home)/': typeof LayouthomeIndexRoute
-  '/_layout/board/': typeof LayoutBoardIndexRoute
-  '/_layout/docs/': typeof LayoutDocsIndexRoute
-  '/_layout/note/': typeof LayoutNoteIndexRoute
   '/_layout/trans/': typeof LayoutTransIndexRoute
+  '/_layout/board/(main)/': typeof LayoutBoardmainIndexRoute
+  '/_layout/board/build/': typeof LayoutBoardBuildIndexRoute
+  '/_layout/board/free/': typeof LayoutBoardFreeIndexRoute
+  '/_layout/board/info/': typeof LayoutBoardInfoIndexRoute
+  '/_layout/board/show/': typeof LayoutBoardShowIndexRoute
+  '/_layout/docs/(general)/': typeof LayoutDocsgeneralIndexRoute
+  '/_layout/docs/character/': typeof LayoutDocsCharacterIndexRoute
+  '/_layout/docs/item/': typeof LayoutDocsItemIndexRoute
+  '/_layout/docs/patch/': typeof LayoutDocsPatchIndexRoute
+  '/_layout/docs/quest/': typeof LayoutDocsQuestIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/board/' | '/docs/' | '/note/' | '/trans/'
+  fullPaths:
+    | '/'
+    | '/board'
+    | '/docs'
+    | '/trans/'
+    | '/board/'
+    | '/board/build/'
+    | '/board/free/'
+    | '/board/info/'
+    | '/board/show/'
+    | '/docs/'
+    | '/docs/character/'
+    | '/docs/item/'
+    | '/docs/patch/'
+    | '/docs/quest/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/board' | '/docs' | '/note' | '/trans'
+  to:
+    | '/'
+    | '/trans'
+    | '/board'
+    | '/board/build'
+    | '/board/free'
+    | '/board/info'
+    | '/board/show'
+    | '/docs'
+    | '/docs/character'
+    | '/docs/item'
+    | '/docs/patch'
+    | '/docs/quest'
   id:
     | '__root__'
     | '/_layout'
+    | '/_layout/board'
+    | '/_layout/docs'
     | '/_layout/(home)/'
-    | '/_layout/board/'
-    | '/_layout/docs/'
-    | '/_layout/note/'
     | '/_layout/trans/'
+    | '/_layout/board/(main)/'
+    | '/_layout/board/build/'
+    | '/_layout/board/free/'
+    | '/_layout/board/info/'
+    | '/_layout/board/show/'
+    | '/_layout/docs/(general)/'
+    | '/_layout/docs/character/'
+    | '/_layout/docs/item/'
+    | '/_layout/docs/patch/'
+    | '/_layout/docs/quest/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,32 +212,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_layout/docs': {
+      id: '/_layout/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof LayoutDocsRouteRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
+    '/_layout/board': {
+      id: '/_layout/board'
+      path: '/board'
+      fullPath: '/board'
+      preLoaderRoute: typeof LayoutBoardRouteRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
     '/_layout/trans/': {
       id: '/_layout/trans/'
       path: '/trans'
       fullPath: '/trans/'
       preLoaderRoute: typeof LayoutTransIndexRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
-    '/_layout/note/': {
-      id: '/_layout/note/'
-      path: '/note'
-      fullPath: '/note/'
-      preLoaderRoute: typeof LayoutNoteIndexRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
-    '/_layout/docs/': {
-      id: '/_layout/docs/'
-      path: '/docs'
-      fullPath: '/docs/'
-      preLoaderRoute: typeof LayoutDocsIndexRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
-    '/_layout/board/': {
-      id: '/_layout/board/'
-      path: '/board'
-      fullPath: '/board/'
-      preLoaderRoute: typeof LayoutBoardIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
     '/_layout/(home)/': {
@@ -132,22 +240,129 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayouthomeIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/_layout/docs/quest/': {
+      id: '/_layout/docs/quest/'
+      path: '/quest'
+      fullPath: '/docs/quest/'
+      preLoaderRoute: typeof LayoutDocsQuestIndexRouteImport
+      parentRoute: typeof LayoutDocsRouteRoute
+    }
+    '/_layout/docs/patch/': {
+      id: '/_layout/docs/patch/'
+      path: '/patch'
+      fullPath: '/docs/patch/'
+      preLoaderRoute: typeof LayoutDocsPatchIndexRouteImport
+      parentRoute: typeof LayoutDocsRouteRoute
+    }
+    '/_layout/docs/item/': {
+      id: '/_layout/docs/item/'
+      path: '/item'
+      fullPath: '/docs/item/'
+      preLoaderRoute: typeof LayoutDocsItemIndexRouteImport
+      parentRoute: typeof LayoutDocsRouteRoute
+    }
+    '/_layout/docs/character/': {
+      id: '/_layout/docs/character/'
+      path: '/character'
+      fullPath: '/docs/character/'
+      preLoaderRoute: typeof LayoutDocsCharacterIndexRouteImport
+      parentRoute: typeof LayoutDocsRouteRoute
+    }
+    '/_layout/docs/(general)/': {
+      id: '/_layout/docs/(general)/'
+      path: '/'
+      fullPath: '/docs/'
+      preLoaderRoute: typeof LayoutDocsgeneralIndexRouteImport
+      parentRoute: typeof LayoutDocsRouteRoute
+    }
+    '/_layout/board/show/': {
+      id: '/_layout/board/show/'
+      path: '/show'
+      fullPath: '/board/show/'
+      preLoaderRoute: typeof LayoutBoardShowIndexRouteImport
+      parentRoute: typeof LayoutBoardRouteRoute
+    }
+    '/_layout/board/info/': {
+      id: '/_layout/board/info/'
+      path: '/info'
+      fullPath: '/board/info/'
+      preLoaderRoute: typeof LayoutBoardInfoIndexRouteImport
+      parentRoute: typeof LayoutBoardRouteRoute
+    }
+    '/_layout/board/free/': {
+      id: '/_layout/board/free/'
+      path: '/free'
+      fullPath: '/board/free/'
+      preLoaderRoute: typeof LayoutBoardFreeIndexRouteImport
+      parentRoute: typeof LayoutBoardRouteRoute
+    }
+    '/_layout/board/build/': {
+      id: '/_layout/board/build/'
+      path: '/build'
+      fullPath: '/board/build/'
+      preLoaderRoute: typeof LayoutBoardBuildIndexRouteImport
+      parentRoute: typeof LayoutBoardRouteRoute
+    }
+    '/_layout/board/(main)/': {
+      id: '/_layout/board/(main)/'
+      path: '/'
+      fullPath: '/board/'
+      preLoaderRoute: typeof LayoutBoardmainIndexRouteImport
+      parentRoute: typeof LayoutBoardRouteRoute
+    }
   }
 }
 
+interface LayoutBoardRouteRouteChildren {
+  LayoutBoardmainIndexRoute: typeof LayoutBoardmainIndexRoute
+  LayoutBoardBuildIndexRoute: typeof LayoutBoardBuildIndexRoute
+  LayoutBoardFreeIndexRoute: typeof LayoutBoardFreeIndexRoute
+  LayoutBoardInfoIndexRoute: typeof LayoutBoardInfoIndexRoute
+  LayoutBoardShowIndexRoute: typeof LayoutBoardShowIndexRoute
+}
+
+const LayoutBoardRouteRouteChildren: LayoutBoardRouteRouteChildren = {
+  LayoutBoardmainIndexRoute: LayoutBoardmainIndexRoute,
+  LayoutBoardBuildIndexRoute: LayoutBoardBuildIndexRoute,
+  LayoutBoardFreeIndexRoute: LayoutBoardFreeIndexRoute,
+  LayoutBoardInfoIndexRoute: LayoutBoardInfoIndexRoute,
+  LayoutBoardShowIndexRoute: LayoutBoardShowIndexRoute,
+}
+
+const LayoutBoardRouteRouteWithChildren =
+  LayoutBoardRouteRoute._addFileChildren(LayoutBoardRouteRouteChildren)
+
+interface LayoutDocsRouteRouteChildren {
+  LayoutDocsgeneralIndexRoute: typeof LayoutDocsgeneralIndexRoute
+  LayoutDocsCharacterIndexRoute: typeof LayoutDocsCharacterIndexRoute
+  LayoutDocsItemIndexRoute: typeof LayoutDocsItemIndexRoute
+  LayoutDocsPatchIndexRoute: typeof LayoutDocsPatchIndexRoute
+  LayoutDocsQuestIndexRoute: typeof LayoutDocsQuestIndexRoute
+}
+
+const LayoutDocsRouteRouteChildren: LayoutDocsRouteRouteChildren = {
+  LayoutDocsgeneralIndexRoute: LayoutDocsgeneralIndexRoute,
+  LayoutDocsCharacterIndexRoute: LayoutDocsCharacterIndexRoute,
+  LayoutDocsItemIndexRoute: LayoutDocsItemIndexRoute,
+  LayoutDocsPatchIndexRoute: LayoutDocsPatchIndexRoute,
+  LayoutDocsQuestIndexRoute: LayoutDocsQuestIndexRoute,
+}
+
+const LayoutDocsRouteRouteWithChildren = LayoutDocsRouteRoute._addFileChildren(
+  LayoutDocsRouteRouteChildren,
+)
+
 interface LayoutRouteRouteChildren {
+  LayoutBoardRouteRoute: typeof LayoutBoardRouteRouteWithChildren
+  LayoutDocsRouteRoute: typeof LayoutDocsRouteRouteWithChildren
   LayouthomeIndexRoute: typeof LayouthomeIndexRoute
-  LayoutBoardIndexRoute: typeof LayoutBoardIndexRoute
-  LayoutDocsIndexRoute: typeof LayoutDocsIndexRoute
-  LayoutNoteIndexRoute: typeof LayoutNoteIndexRoute
   LayoutTransIndexRoute: typeof LayoutTransIndexRoute
 }
 
 const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
+  LayoutBoardRouteRoute: LayoutBoardRouteRouteWithChildren,
+  LayoutDocsRouteRoute: LayoutDocsRouteRouteWithChildren,
   LayouthomeIndexRoute: LayouthomeIndexRoute,
-  LayoutBoardIndexRoute: LayoutBoardIndexRoute,
-  LayoutDocsIndexRoute: LayoutDocsIndexRoute,
-  LayoutNoteIndexRoute: LayoutNoteIndexRoute,
   LayoutTransIndexRoute: LayoutTransIndexRoute,
 }
 

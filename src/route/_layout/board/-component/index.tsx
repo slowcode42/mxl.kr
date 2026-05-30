@@ -1,3 +1,14 @@
+import { Outlet } from '@tanstack/react-router'
+
+import { VStack } from '~/component'
+
+import { Menu } from './menu'
+
 export function component() {
-  return <div>board</div>
+  return (
+    <VStack>
+      <Menu />
+      <Outlet />
+    </VStack>
+  )
 }

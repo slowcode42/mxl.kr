@@ -9,7 +9,6 @@ export function Menu() {
       <HStack className='gap-1 *:cursor-pointer *:border'>
         <ButtonL to='/docs'>문서</ButtonL>
         <ButtonL to='/board'>게시판</ButtonL>
-        <ButtonL to='/note'>패치노트</ButtonL>
         <ButtonL to='/trans'>번역기</ButtonL>
       </HStack>
     </HStack>
